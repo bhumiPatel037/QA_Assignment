@@ -4,13 +4,12 @@ public class IshipMateInterfaceImpl implements  IShipMate {
     {
         boolean isKnown = true;
         try {
-            String customer = address.customer;
-            String street = address.street;
-            String city = address.city;
-            String province = address.province;
-            String country = address.country;
-            String postalCode = address.postalCode;
-
+            String customer = address!=null?address.customer:"";
+            String street =address!=null? address.street:"";
+            String city = address!=null?address.city:"";
+            String province =address!=null? address.province:"";
+            String country = address!=null?address.country:"";
+            String postalCode =address!=null? address.postalCode:"";
 
             if (customer == null || customer == "" || customer.trim().isEmpty()) {
                 isKnown = false;
@@ -45,7 +44,6 @@ public class IshipMateInterfaceImpl implements  IShipMate {
     @Override
     public String shipToAddress(Address address, int count, String drugName) throws Exception {
 
-
         IDatabaseImplementation iDatabaseImplemetation = new IDatabaseImplementation();
         String estimated_date="30-06-2019";
 
@@ -53,7 +51,6 @@ public class IshipMateInterfaceImpl implements  IShipMate {
       {
           if(iDatabaseImplemetation.isDrugExist(drugName))
           {
-
               Integer drugCount = iDatabaseImplemetation.drugCount(drugName);
               if(drugCount>=count)
               {
@@ -72,7 +69,6 @@ public class IshipMateInterfaceImpl implements  IShipMate {
       }
       else
       {
-
           throw new Exception("The given Address is unknown address");
       }
 
