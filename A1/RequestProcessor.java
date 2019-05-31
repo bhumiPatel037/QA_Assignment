@@ -73,12 +73,8 @@ public class RequestProcessor implements IRequestProcessor
 					address.country=addressObj.get("country")!=null? (String) addressObj.get("country"):"";
 					address.postalCode=addressObj.get("postalCode")!=null?(String) addressObj.get("postalCode"):"";
 
-
-
 					if(authentication.authorize(requestClass.username,RequestAction.SHIP))
 					{
-
-
 						if(database.isDrugExist(requestClass.drug))
 						{
 							if(database.claimDrug(requestClass.drug,quantity))
@@ -158,7 +154,7 @@ public class RequestProcessor implements IRequestProcessor
 	public void authenticateSuccess( IAuthentication authentication,
 									 IShipMate shipMate,
 									 IDatabase database)
-{
+	{
 	// testCase to check Known API response
 
 	String jsonString = "{  \n" +
@@ -179,14 +175,12 @@ public class RequestProcessor implements IRequestProcessor
 		System.out.println("FAIL - authenticateSuccess");
 	}
 
-}
+	}
 	public void authenticateFailure1( IAuthentication authentication,
 									 IShipMate shipMate,
 									 IDatabase database)
 	{
-
 		// testCase to check response of unKnown API request
-
 		String jsonString = "{  \n" +
 			"   \"apikey\":\"ab882jjhas8989lkxl;klasdf8u22jFALSE\",\n" +
 			"   \"username\":\"rhawkeyQUERY\",\n" +
@@ -203,7 +197,6 @@ public class RequestProcessor implements IRequestProcessor
 		{
 			System.out.println("FAIL - authenticateFailure1");
 		}
-
 	}
 	public void authenticateFailure2( IAuthentication authentication,
 									 IShipMate shipMate,
@@ -254,7 +247,6 @@ public class RequestProcessor implements IRequestProcessor
 		{
 			System.out.println("FAIL - authorizeQuerySuccess");
 		}
-
 	}
 
 	public void authorizeQueryFailure1( IAuthentication authentication,
@@ -279,7 +271,6 @@ public class RequestProcessor implements IRequestProcessor
 		{
 			System.out.println("FAIL - authorizeQueryFailure1");
 		}
-
 	}
 	public void authorizeQueryFailure2( IAuthentication authentication,
 									   IShipMate shipMate,
@@ -371,8 +362,6 @@ public class RequestProcessor implements IRequestProcessor
 		{
 			System.out.println("FAIL - authorizeShipFailure1");
 		}
-
-
 	}
 	public void authorizeShipFailure2( IAuthentication authentication,
 									  IShipMate shipMate,
@@ -410,7 +399,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void knownDrugSuccess( IAuthentication authentication,
+	public void knownDrugSuccessQuery( IAuthentication authentication,
 								  IShipMate shipMate,
 								  IDatabase database)
 	{
@@ -428,16 +417,16 @@ public class RequestProcessor implements IRequestProcessor
 
 		if(response.equals(expectedOutput))
 		{
-			System.out.println("PASS - knownDrugSuccess");
+			System.out.println("PASS - knownDrugSuccessQuery");
 		}
 		else
 		{
-			System.out.println("FAIL - knownDrugSuccess");
+			System.out.println("FAIL - knownDrugSuccessQuery");
 		}
 
 	}
 
-	public void knownDrugFailure( IAuthentication authentication,
+	public void knownDrugFailureQuery( IAuthentication authentication,
 								  IShipMate shipMate,
 								  IDatabase database)
 	{
@@ -454,11 +443,80 @@ public class RequestProcessor implements IRequestProcessor
 
 		if(response.equals(expectedOutput))
 		{
-			System.out.println("PASS - knownDrugFailure");
+			System.out.println("PASS - knownDrugFailureQuery");
 		}
 		else
 		{
-			System.out.println("FAIL - knownDrugFailure");
+			System.out.println("FAIL - knownDrugFailureQuery");
+		}
+
+	}
+	public void knownDrugSuccessShip( IAuthentication authentication,
+									  IShipMate shipMate,
+									  IDatabase database)
+	{
+
+		//TEST case to check DrugCount for Known drug.
+		String jsonString = "{  \n" +
+				"   \"apikey\":\"ab882jjhas8989lkxl;klasdf8u22jTRUE\",\n" +
+				"   \"username\":\"rhawkeySHIP\",\n" +
+				"   \"action\":\"SHIP\",\n" +
+				"   \"drug\":\"PCP\",\n" +
+				"   \"quantity\":10,\n" +
+				"   \"address\":{  \n" +
+				"      \"customer\":\"Rob Hawkey\",\n" +
+				"      \"street\":\"123 Street\",\n" +
+				"      \"city\":\"Halifax\",\n" +
+				"      \"province\":\"Nova Scotia\",\n" +
+				"      \"country\":\"Canada\",\n" +
+				"      \"postalCode\":\"H0H0H0\"\n" +
+				"   }\n" +
+				"}\n";
+
+		String expectedOutput="{\"estimatedDeliveryDate\":\"30-06-2019\",\"status\":\"200\"}";
+		String response = processRequest(jsonString,authentication,shipMate,database);
+		if(response.equals(expectedOutput))
+		{
+			System.out.println("PASS - knownDrugSuccessShip");
+		}
+		else
+		{
+			System.out.println("FAIL - knownDrugSuccessShip");
+		}
+
+	}
+
+	public void knownDrugFailureShip( IAuthentication authentication,
+									   IShipMate shipMate,
+									   IDatabase database)
+	{
+		//TEST case to check DrugCount for unKnown drug.
+		String jsonString = "{  \n" +
+				"   \"apikey\":\"ab882jjhas8989lkxl;klasdf8u22jTRUE\",\n" +
+				"   \"username\":\"rhawkeySHIP\",\n" +
+				"   \"action\":\"SHIP\",\n" +
+				"   \"drug\":\"PCPD\",\n" +
+				"   \"quantity\":10,\n" +
+				"   \"address\":{  \n" +
+				"      \"customer\":\"Rob Hawkey\",\n" +
+				"      \"street\":\"123 Street\",\n" +
+				"      \"city\":\"Halifax\",\n" +
+				"      \"province\":\"Nova Scotia\",\n" +
+				"      \"country\":\"Canada\",\n" +
+				"      \"postalCode\":\"H0H0H0\"\n" +
+				"   }\n" +
+				"}\n";
+
+		String expectedOutput="{\"error\":\"Unknown Drug\",\"status\":500}";
+		String response = processRequest(jsonString,authentication,shipMate,database);
+
+		if(response.equals(expectedOutput))
+		{
+			System.out.println("PASS - knownDrugFailureShip");
+		}
+		else
+		{
+			System.out.println("FAIL - knownDrugFailureShip");
 		}
 
 	}
@@ -695,7 +753,6 @@ public class RequestProcessor implements IRequestProcessor
 		{
 			System.out.println("FAIL - knownAddressFailurePostalCode");
 		}
-
 	}
 
 	public void sufficientStockSuccess( IAuthentication authentication,
@@ -767,12 +824,6 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-
-
-
-
-
-
 	static public void runUnitTests()
 	{
 
@@ -808,11 +859,17 @@ public class RequestProcessor implements IRequestProcessor
 		// test case for unknown username(Without Ship word in username)
 		requestProcessor.authorizeShipFailure2(authentication, shipMate,database);
 
-		// test case for known drug request
-		requestProcessor.knownDrugSuccess(authentication, shipMate,database);
+		// test case for known drug for query request
+		requestProcessor.knownDrugSuccessQuery(authentication, shipMate,database);
 
-		// test case for unknown drug request
-		requestProcessor.knownDrugFailure(authentication, shipMate,database);
+		// test case for unknown for query request
+		requestProcessor.knownDrugFailureQuery(authentication, shipMate,database);
+
+		// test case for known drug for ship request
+		requestProcessor.knownDrugSuccessShip(authentication, shipMate,database);
+
+		// test case for unknown drug ship request
+		requestProcessor.knownDrugFailureShip(authentication, shipMate,database);
 
 		// test case for valid known address request
 		requestProcessor.knownAddressSuccess(authentication, shipMate,database);
