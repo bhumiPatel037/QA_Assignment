@@ -151,7 +151,7 @@ public class RequestProcessor implements IRequestProcessor
 		FAIL - <Name of test>
 	*/
 
-	public void authenticateSuccess( IAuthentication authentication,
+	private void authenticateSuccess( IAuthentication authentication,
 									 IShipMate shipMate,
 									 IDatabase database)
 	{
@@ -176,7 +176,7 @@ public class RequestProcessor implements IRequestProcessor
 	}
 
 	}
-	public void authenticateFailure1( IAuthentication authentication,
+	private void authenticateFailure1( IAuthentication authentication,
 									 IShipMate shipMate,
 									 IDatabase database)
 	{
@@ -198,7 +198,7 @@ public class RequestProcessor implements IRequestProcessor
 			System.out.println("FAIL - authenticateFailure1");
 		}
 	}
-	public void authenticateFailure2( IAuthentication authentication,
+	private void authenticateFailure2( IAuthentication authentication,
 									 IShipMate shipMate,
 									 IDatabase database)
 	{
@@ -224,7 +224,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void authorizeQuerySuccess( IAuthentication authentication,
+	private void authorizeQuerySuccess( IAuthentication authentication,
 									   IShipMate shipMate,
 									   IDatabase database)
 	{
@@ -249,7 +249,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 	}
 
-	public void authorizeQueryFailure1( IAuthentication authentication,
+	private void authorizeQueryFailure1( IAuthentication authentication,
 									   IShipMate shipMate,
 									   IDatabase database)
 	{
@@ -272,7 +272,7 @@ public class RequestProcessor implements IRequestProcessor
 			System.out.println("FAIL - authorizeQueryFailure1");
 		}
 	}
-	public void authorizeQueryFailure2( IAuthentication authentication,
+	private void authorizeQueryFailure2( IAuthentication authentication,
 									   IShipMate shipMate,
 									   IDatabase database)
 	{
@@ -298,7 +298,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void authorizeShipSuccess( IAuthentication authentication,
+	private void authorizeShipSuccess( IAuthentication authentication,
 									  IShipMate shipMate,
 									  IDatabase database)
 	{
@@ -330,7 +330,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void authorizeShipFailure1( IAuthentication authentication,
+	private void authorizeShipFailure1( IAuthentication authentication,
 									  IShipMate shipMate,
 									  IDatabase database)
 	{
@@ -363,7 +363,7 @@ public class RequestProcessor implements IRequestProcessor
 			System.out.println("FAIL - authorizeShipFailure1");
 		}
 	}
-	public void authorizeShipFailure2( IAuthentication authentication,
+	private void authorizeShipFailure2( IAuthentication authentication,
 									  IShipMate shipMate,
 									  IDatabase database)
 	{
@@ -399,7 +399,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void knownDrugSuccessQuery( IAuthentication authentication,
+	private void knownDrugSuccessQuery( IAuthentication authentication,
 								  IShipMate shipMate,
 								  IDatabase database)
 	{
@@ -426,7 +426,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void knownDrugFailureQuery( IAuthentication authentication,
+	private void knownDrugFailureQuery( IAuthentication authentication,
 								  IShipMate shipMate,
 								  IDatabase database)
 	{
@@ -451,7 +451,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void knownDrugSuccessShip( IAuthentication authentication,
+	private void knownDrugSuccessShip( IAuthentication authentication,
 									  IShipMate shipMate,
 									  IDatabase database)
 	{
@@ -486,7 +486,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void knownDrugFailureShip( IAuthentication authentication,
+	private void knownDrugFailureShip( IAuthentication authentication,
 									   IShipMate shipMate,
 									   IDatabase database)
 	{
@@ -521,7 +521,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void knownAddressSuccess( IAuthentication authentication,
+	private void knownAddressSuccess( IAuthentication authentication,
 								  IShipMate shipMate,
 								  IDatabase database)
 	{
@@ -556,7 +556,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void knownAddressFailureCustomer( IAuthentication authentication,
+	private void knownAddressFailureCustomer( IAuthentication authentication,
 									 IShipMate shipMate,
 									 IDatabase database)
 	{
@@ -589,7 +589,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void knownAddressFailureStreet( IAuthentication authentication,
+	private void knownAddressFailureStreet( IAuthentication authentication,
 											 IShipMate shipMate,
 											 IDatabase database)
 	{
@@ -622,7 +622,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void knownAddressFailureCity( IAuthentication authentication,
+	private void knownAddressFailureCity( IAuthentication authentication,
 										   IShipMate shipMate,
 										   IDatabase database)
 	{
@@ -655,7 +655,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void knownAddressFailureProvince( IAuthentication authentication,
+	private void knownAddressFailureProvince( IAuthentication authentication,
 										 IShipMate shipMate,
 										 IDatabase database)
 	{
@@ -689,7 +689,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void knownAddressFailureCountry( IAuthentication authentication,
+	private void knownAddressFailureCountry( IAuthentication authentication,
 											 IShipMate shipMate,
 											 IDatabase database)
 	{
@@ -722,7 +722,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 
 	}
-	public void knownAddressFailurePostalCode( IAuthentication authentication,
+	private void knownAddressFailurePostalCode( IAuthentication authentication,
 											IShipMate shipMate,
 											IDatabase database)
 	{
@@ -755,7 +755,7 @@ public class RequestProcessor implements IRequestProcessor
 		}
 	}
 
-	public void sufficientStockSuccess( IAuthentication authentication,
+	private void sufficientStockSuccess( IAuthentication authentication,
 										IShipMate shipMate,
 										IDatabase database)
 	{
@@ -790,7 +790,7 @@ public class RequestProcessor implements IRequestProcessor
 
 	}
 
-	public void sufficientStockFailure( IAuthentication authentication,
+	private void sufficientStockFailure( IAuthentication authentication,
 										IShipMate shipMate,
 										IDatabase database)
 	{
