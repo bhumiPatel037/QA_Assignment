@@ -45,10 +45,8 @@ public class IDatabaseImplementation implements IDatabase
     @Override
     public Boolean isDrugExist(String drugName)
     {
-
         if (mockDrugDataBase.containsKey(drugName))
         {
-
             return true;
         }
         else
