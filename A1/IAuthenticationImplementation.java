@@ -19,8 +19,6 @@ public class IAuthenticationImplementation implements IAuthentication
             return false;
         }
 
-
-
     }
 
     @Override
@@ -35,7 +33,5 @@ public class IAuthenticationImplementation implements IAuthentication
       {
           return false;
       }
-
-
     }
 }
