@@ -2,10 +2,10 @@ public class Person
 {
 	private String name;
 
-	private String areaCode;
-	private String phoneNumber;
+
 
      PersonAuthentication personAuthentication = new PersonAuthentication();
+     PersonContactDetails personContactDetails= new PersonContactDetails();
 
 	public Person(String name)
 	{
@@ -14,23 +14,19 @@ public class Person
 
 	public void setAreaCode(String areaCode)
 	{
-		this.areaCode = areaCode;
+		personContactDetails.setAreaCode(areaCode);
 	}
 	public String getAreaCode()
 	{
-		return areaCode;
+		return  personContactDetails.getAreaCode();
 	}
 	public void setPhoneNumber(String phoneNumber)
 	{
-		this.phoneNumber = phoneNumber;
+		personContactDetails.setPhoneNumber(phoneNumber);
 	}
 	public String getPhoneNumber()
 	{
-		if (areaCode != null && areaCode != "")
-		{
-			return "(" + areaCode + ") " + phoneNumber; 
-		}
-		return phoneNumber;
+		return personContactDetails.getPhoneNumber();
 	}
 
 	public void setLoginCredentials(String userName, String password)
