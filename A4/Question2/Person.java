@@ -2,8 +2,6 @@ public class Person
 {
 	private String name;
 
-
-
      PersonAuthentication personAuthentication = new PersonAuthentication();
      PersonContactDetails personContactDetails= new PersonContactDetails();
 
